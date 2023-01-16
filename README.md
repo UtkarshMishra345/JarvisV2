@@ -2,6 +2,8 @@
 Jarvis version 2
 Jarvis Advanced personal bot
 
+********************************** Use Python 3.9.7 for better experience **************************************
+
 step1 - install libraries In Cmd write command pip install -r requirements.txt
 
 then install whl file of Pyaudio from python unofficial binaries
