@@ -1,0 +1,45 @@
+import os 
+import speech_recognition as sr
+import pyttsx3
+
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+print(voices[0].id)
+engine.setProperty('voice', voices[0].id)
+# engine.setProperty('rate', 120)
+
+# text to speech
+def speak(audio):
+    engine.say(audio)
+    print(audio)
+    engine.runAndWait()
+
+    # To convert voice into text
+def takecommand():
+        r = sr.Recognizer()
+        with sr.Microphone() as source:
+            print("Listening...")
+            r.pause_threshold = 1
+            audio = r.listen(source, timeout=100, phrase_time_limit=10)
+
+        try:
+            print("Recognizing...")
+            query = r.recognize_google(audio, language='en-in')
+            print(f"Lucky Said: {query}")
+
+        except Exception as e:
+            # speak("Say that again please...")
+            return 'none'
+        query = query.lower()
+        return query
+
+
+while True:
+    wake_Up = takecommand()
+
+    if "wake up" in wake_Up:
+        speak("Okay sir, Waking Up Jarvis")
+        os.startfile("----") #Put your Jarvis File Path
+
+    else:
+        print("nothing")
